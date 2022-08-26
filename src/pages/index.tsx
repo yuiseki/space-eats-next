@@ -222,7 +222,9 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1>SpaceEats</h1>
         <h2>- 近所の困った空き家で生活が豊かに -</h2>
-        <h2>プロトタイプであり適当な表示です</h2>
+        <h2>
+          <mark>現時点ではプロトタイプであり適当な表示です</mark>
+        </h2>
         <div
           style={{
             width: "100%",
