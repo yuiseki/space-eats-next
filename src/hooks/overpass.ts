@@ -40,7 +40,7 @@ export const useOverpass = () => {
 
       // build query
       let query = "[out:json]";
-      query += "[timeout:25];\n";
+      query += "[timeout:60];\n";
       query += 'nwr["building"]';
       query += `(around:${around},${latitude},${longitude});\n`;
       query += "out meta geom;";
