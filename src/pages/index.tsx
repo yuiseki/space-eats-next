@@ -223,8 +223,19 @@ const Home: NextPage = () => {
         <h1>SpaceEats</h1>
         <h2>- 近所の困った空き家で生活が豊かに -</h2>
         <h2>
-          <mark>現時点ではプロトタイプであり適当な表示です</mark>
+          <mark>注意：現時点ではプロトタイプであり適当な表示です</mark>
         </h2>
+        <div style={{ margin: "5px", border: "1px black solid" }}>
+          <p>
+            衛星データや航空写真の解析に基づいた、空き家の可能性が高い建物を推定して地図上で表示しています。
+          </p>
+          <p>
+            「確実に空き家である建物」以外はあくまでも推定によるものであるため、精度向上に協力していただきたいです。
+          </p>
+          <p>
+            空き家であると確定した建物は、複数のオープンデータを組み合わせ、最適な活用法を提案します。
+          </p>
+        </div>
         <div
           style={{
             width: "100%",
@@ -240,7 +251,7 @@ const Home: NextPage = () => {
               padding: "4px",
             }}
           >
-            空き家ではない
+            おそらく空き家ではない建物
           </div>
           <div
             style={{
@@ -250,7 +261,7 @@ const Home: NextPage = () => {
               padding: "4px",
             }}
           >
-            少なからず空き家の可能性がある
+            空き家の可能性がある建物
           </div>
           <div
             style={{
@@ -260,7 +271,7 @@ const Home: NextPage = () => {
               padding: "4px",
             }}
           >
-            空き家の可能性が高い
+            空き家の可能性が高い建物
           </div>
           <div
             style={{
@@ -270,7 +281,7 @@ const Home: NextPage = () => {
               padding: "4px",
             }}
           >
-            空き家である
+            確実に空き家である建物
           </div>
         </div>
         <div
