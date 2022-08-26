@@ -234,6 +234,8 @@ const Home: NextPage = () => {
             style={{
               textAlign: "center",
               backgroundColor: "rgba(0, 0, 255, 0.4)",
+              fontWeight: "bold",
+              padding: "4px",
             }}
           >
             空き家ではない
@@ -242,6 +244,8 @@ const Home: NextPage = () => {
             style={{
               textAlign: "center",
               backgroundColor: "rgba(0, 255, 0, 0.4)",
+              fontWeight: "bold",
+              padding: "4px",
             }}
           >
             少なからず空き家の可能性がある
@@ -250,6 +254,8 @@ const Home: NextPage = () => {
             style={{
               textAlign: "center",
               backgroundColor: "rgba(255, 255, 0, 0.4)",
+              fontWeight: "bold",
+              padding: "4px",
             }}
           >
             空き家の可能性が高い
@@ -258,6 +264,8 @@ const Home: NextPage = () => {
             style={{
               textAlign: "center",
               backgroundColor: "rgba(255, 0, 0, 0.4)",
+              fontWeight: "bold",
+              padding: "4px",
             }}
           >
             空き家である
