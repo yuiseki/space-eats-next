@@ -221,67 +221,84 @@ const Home: NextPage = () => {
         <h1>SpaceEats</h1>
         <h2>- 近所の困った空き家で生活が豊かに -</h2>
 
-        <Map
-          ref={mapRef}
-          {...viewState}
-          onMove={onMapMove}
-          onMoveEnd={onMapMoveEnd}
-          onLoad={onMapLoad}
-          interactiveLayerIds={["buildings-layer-fill"]}
-          onClick={onClick}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          //onMouseDown={onMouseDown}
-          //onMouseMove={onMouseMove}
-          //onMouseUp={onMouseUp}
-          //dragPan={false}
-          dragRotate={false}
-          boxZoom={false}
-          hash={true}
-          cursor={cursor}
-          mapLib={maplibregl}
-          style={{ width: "100%", height: "100%" }}
-          mapStyle={OSM_RASTER_TILE_STYLE}
+        <div
+          style={{
+            zIndex: 1,
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "100%",
+          }}
         >
-          <Source id="buildings-source" type="geojson" data={geojson}>
-            <Layer {...BUILDINGS_FILL_STYLE} />
-          </Source>
-          <NavigationControl
-            position="top-left"
-            style={{ marginTop: "55px" }}
-            showCompass={false}
-          />
-          <GeolocateControl
-            ref={geolocateControlRef}
-            position="top-left"
-            showUserLocation={true}
-            showAccuracyCircle={false}
-            trackUserLocation={false}
-            positionOptions={{ enableHighAccuracy: true }}
-            fitBoundsOptions={{ zoom: 17 }}
-          />
-          <div
-            className="fa-2xl"
-            style={{
-              zIndex: 100,
-              display: "flex",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              textAlign: "center",
-              verticalAlign: "middle",
-            }}
+          <Map
+            ref={mapRef}
+            {...viewState}
+            onMove={onMapMove}
+            onMoveEnd={onMapMoveEnd}
+            onLoad={onMapLoad}
+            interactiveLayerIds={["buildings-layer-fill"]}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            //onMouseDown={onMouseDown}
+            //onMouseMove={onMouseMove}
+            //onMouseUp={onMouseUp}
+            //dragPan={false}
+            dragRotate={false}
+            boxZoom={false}
+            hash={true}
+            cursor={cursor}
+            mapLib={maplibregl}
+            style={{ width: "100%", height: "100%" }}
+            mapStyle={OSM_RASTER_TILE_STYLE}
           >
-            {!viewState || (viewState?.zoom && viewState.zoom < 16) ? (
-              <FontAwesomeIcon size="2x" icon={faSearchPlus} />
-            ) : loadingOverpass ? (
-              <FontAwesomeIcon size="2x" icon={faSpinner} spin={true} />
-            ) : (
-              <FontAwesomeIcon size="2x" icon={faXmark} />
-            )}
-          </div>
-          {pins}
-        </Map>
+            <Source id="buildings-source" type="geojson" data={geojson}>
+              <Layer {...BUILDINGS_FILL_STYLE} />
+            </Source>
+            <NavigationControl
+              position="top-left"
+              style={{ marginTop: "55px" }}
+              showCompass={false}
+            />
+            <GeolocateControl
+              ref={geolocateControlRef}
+              position="top-left"
+              showUserLocation={true}
+              showAccuracyCircle={false}
+              trackUserLocation={false}
+              positionOptions={{ enableHighAccuracy: true }}
+              fitBoundsOptions={{ zoom: 17 }}
+            />
+            <div
+              className="fa-2xl"
+              style={{
+                zIndex: 100,
+                display: "flex",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                textAlign: "center",
+                verticalAlign: "middle",
+                height: "50px",
+                width: "50px",
+              }}
+            >
+              {!viewState || (viewState?.zoom && viewState.zoom < 16) ? (
+                <FontAwesomeIcon size="2x" icon={faSearchPlus} />
+              ) : loadingOverpass ? (
+                <FontAwesomeIcon
+                  size="2x"
+                  icon={faSpinner}
+                  spin={true}
+                  className="spinner"
+                />
+              ) : (
+                <FontAwesomeIcon size="2x" icon={faXmark} />
+              )}
+            </div>
+            {pins}
+          </Map>
+        </div>
       </main>
     </div>
   );
