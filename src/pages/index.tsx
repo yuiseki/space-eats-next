@@ -32,7 +32,8 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-// map style
+import { useOverpass } from "../hooks/overpass";
+
 import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
 
@@ -59,7 +60,7 @@ const Home: NextPage = () => {
     MapboxGeoJSONFeature[]
   >([]);
 
-  const loadingOverpass = false;
+  const { fetchOverpassBuildings, loadingOverpass } = useOverpass();
 
   //
   // initial load
@@ -105,7 +106,9 @@ const Home: NextPage = () => {
     setViewState(e.viewState);
   }, []);
 
-  /*
+  //
+  // fetch building
+  //
   useEffect(() => {
     (async () => {
       if (!debouncedViewState) {
@@ -120,7 +123,6 @@ const Home: NextPage = () => {
       setGeojson(newGeojson);
     })();
   }, [debouncedViewState]);
-  */
 
   //
   // mouse events
