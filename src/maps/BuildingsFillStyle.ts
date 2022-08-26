@@ -9,13 +9,11 @@ export const BUILDINGS_FILL_STYLE: LayerProps = {
       "case",
       ["boolean", ["feature-state", "select"], false],
       "green",
-      // for JPN
-      ["all", ["boolean", ["has", "building:levels"], false]],
-      "blue",
-      // for all country
+      ["any", ["boolean", ["has", "building:levels"], false]],
+      "red",
       ["any", ["boolean", ["has", "source_ref"], false]],
       "yellow",
-      "red",
+      "blue",
     ],
     "fill-opacity": [
       "case",
