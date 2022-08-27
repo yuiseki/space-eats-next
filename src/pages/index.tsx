@@ -120,6 +120,19 @@ const Home: NextPage = () => {
   //
   useEffect(() => {
     setTimeout(() => {
+      setViewState({
+        zoom: 16,
+        latitude: 35.681464,
+        longitude: 139.764074,
+        bearing: 0,
+        pitch: 0,
+        padding: {
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+        },
+      });
       // trigger geolocate if map hash is /0/0
       console.log(window.location.hash);
       if (!window.location.hash.endsWith("/0/0")) {
