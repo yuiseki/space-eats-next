@@ -37,6 +37,59 @@ import { useOverpass } from "../hooks/overpass";
 import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
 
+const UsageGuide = () => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "rgba(128, 128, 128, 0.4)",
+          fontWeight: "bold",
+          padding: "4px",
+        }}
+      >
+        おそらく空き家ではない建物
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "rgba(0, 255, 0, 0.4)",
+          fontWeight: "bold",
+          padding: "4px",
+        }}
+      >
+        空き家の可能性がある建物
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "rgba(255, 255, 0, 0.4)",
+          fontWeight: "bold",
+          padding: "4px",
+        }}
+      >
+        空き家の可能性が高い建物
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "rgba(255, 0, 0, 0.4)",
+          fontWeight: "bold",
+          padding: "4px",
+        }}
+      >
+        確実に空き家である建物
+      </div>
+    </div>
+  );
+};
+
 const Home: NextPage = () => {
   const mapRef = useRef<MapRef>(null);
 
@@ -236,54 +289,7 @@ const Home: NextPage = () => {
             空き家であると確定した建物は、複数のオープンデータを組み合わせ、最適な活用法を提案します。
           </p>
         </div>
-        <div
-          style={{
-            width: "100%",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              backgroundColor: "rgba(0, 0, 255, 0.4)",
-              fontWeight: "bold",
-              padding: "4px",
-            }}
-          >
-            おそらく空き家ではない建物
-          </div>
-          <div
-            style={{
-              textAlign: "center",
-              backgroundColor: "rgba(0, 255, 0, 0.4)",
-              fontWeight: "bold",
-              padding: "4px",
-            }}
-          >
-            空き家の可能性がある建物
-          </div>
-          <div
-            style={{
-              textAlign: "center",
-              backgroundColor: "rgba(255, 255, 0, 0.4)",
-              fontWeight: "bold",
-              padding: "4px",
-            }}
-          >
-            空き家の可能性が高い建物
-          </div>
-          <div
-            style={{
-              textAlign: "center",
-              backgroundColor: "rgba(255, 0, 0, 0.4)",
-              fontWeight: "bold",
-              padding: "4px",
-            }}
-          >
-            確実に空き家である建物
-          </div>
-        </div>
+        <UsageGuide />
         <div
           style={{
             zIndex: 1,
