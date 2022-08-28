@@ -37,7 +37,7 @@ import { useOverpass } from "../hooks/overpass";
 import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
 import { LastEditUserIconView } from "../components/LastEditUserIconView";
-import { MESH_FILL_STYLE } from "../maps/MeshFillStyle";
+import { MESH_FILL_STYLE } from "../maps/MeshFillStyleUTokyo";
 
 const UsageGuide = () => {
   return (
@@ -131,10 +131,9 @@ const Home: NextPage = () => {
   //
   useEffect(() => {
     (async () => {
-      const res = await fetch(
-        "https://raw.githubusercontent.com/valuecreation/mapbox-prj/b014b62e2c4db92726ca35ca8ec9a52b2acd5f28/data/1km_mesh_2018_13.geojson"
-      );
+      const res = await fetch("data/chiyoda_mesh.geojson");
       const json = await res.json();
+      console.log(json);
       setMeshGeoJSON(json);
     })();
     setTimeout(() => {
@@ -206,7 +205,7 @@ const Home: NextPage = () => {
       );
       setBuildingsGeoJSON(newGeojson);
     })();
-  }, [debouncedViewState]);
+  }, [debouncedViewState, fetchOverpassBuildings]);
 
   //
   // mouse events
@@ -240,19 +239,6 @@ const Home: NextPage = () => {
     setHoverInfo(undefined);
   }, []);
 
-  const onClick = useCallback((event: any) => {
-    onReset();
-    const clickedFeature = event.features && event.features[0];
-    if (!clickedFeature) {
-      return;
-    }
-    mapRef.current?.setFeatureState(
-      { source: "buildings-source", id: clickedFeature.id },
-      { select: true }
-    );
-    setSelectedFeatures([clickedFeature]);
-  }, []);
-
   const onReset = useCallback(() => {
     mapRef.current?.querySourceFeatures("buildings-source").map((feature) => {
       mapRef.current?.setFeatureState(
@@ -262,6 +248,22 @@ const Home: NextPage = () => {
     });
     setSelectedFeatures([]);
   }, []);
+
+  const onClick = useCallback(
+    (event: any) => {
+      onReset();
+      const clickedFeature = event.features && event.features[0];
+      if (!clickedFeature) {
+        return;
+      }
+      mapRef.current?.setFeatureState(
+        { source: "buildings-source", id: clickedFeature.id },
+        { select: true }
+      );
+      setSelectedFeatures([clickedFeature]);
+    },
+    [onReset]
+  );
 
   //
   // icons
