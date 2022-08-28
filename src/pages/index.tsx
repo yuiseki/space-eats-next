@@ -286,12 +286,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1>SpaceEats</h1>
-        <h2>- 近所の困った空き家で生活が豊かに -</h2>
-        <h2>
-          <mark>注意：現時点ではプロトタイプであり適当な表示です</mark>
-        </h2>
-        <div style={{ margin: "5px", border: "1px black solid" }}>
+        <h2>SpaceEats - 近所の困った空き家で生活が豊かに -</h2>
+        <div
+          style={{
+            fontSize: "0.7em",
+            margin: "5px",
+            border: "1px black solid",
+          }}
+        >
           <p>
             衛星データや航空写真の解析に基づいた、空き家の可能性が高い建物を推定して地図上で表示しています。
           </p>
@@ -300,6 +302,9 @@ const Home: NextPage = () => {
           </p>
           <p>
             空き家であると確定した建物は、複数のオープンデータを組み合わせ、最適な活用法を提案します。
+          </p>
+          <p>
+            <mark>注意：現時点ではプロトタイプであり適当な表示です</mark>
           </p>
         </div>
         <UsageGuide />
