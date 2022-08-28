@@ -51,7 +51,7 @@ const UsageGuide = () => {
       <div
         style={{
           textAlign: "center",
-          backgroundColor: "rgba(128, 128, 128, 0.4)",
+          backgroundColor: "rgba(0, 255, 255, 0.4)",
           fontWeight: "bold",
           padding: "4px",
         }}
