@@ -36,6 +36,7 @@ import { useOverpass } from "../hooks/overpass";
 
 import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
+import { LastEditUserIconView } from "../components/LastEditUserIconView";
 
 const UsageGuide = () => {
   return (
@@ -269,7 +270,7 @@ const Home: NextPage = () => {
           latitude={feature.properties.center[1]}
           anchor="center"
         >
-          <FontAwesomeIcon size="2x" icon={faXmark} />
+          <LastEditUserIconView feature={feature} size={size} />
         </Marker>
       );
     });

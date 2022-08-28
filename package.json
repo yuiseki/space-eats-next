@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "geojson": "^0.5.0",
+    "jdenticon": "^3.2.0",
     "maplibre-gl": "^2.3.0",
     "next": "12.2.5",
     "osm-api": "^1.0.4",
