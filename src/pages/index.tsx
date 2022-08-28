@@ -269,7 +269,7 @@ const Home: NextPage = () => {
   const pins = useMemo(() => {
     let size = 25;
     if (viewState) {
-      size = viewState.zoom < 18 ? 20 : viewState.zoom < 19 ? 25 : 35;
+      size = viewState.zoom < 18 ? 10 : viewState.zoom < 19 ? 25 : 35;
     }
     return buldingsGeoJSON.features.map((feature, i) => {
       if (!feature.properties) {
