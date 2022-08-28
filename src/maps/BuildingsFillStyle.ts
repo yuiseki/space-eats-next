@@ -13,7 +13,7 @@ export const BUILDINGS_FILL_STYLE: LayerProps = {
       "red",
       ["any", ["boolean", ["has", "source_ref"], false]],
       "yellow",
-      "gray",
+      "blue",
     ],
     "fill-opacity": [
       "case",

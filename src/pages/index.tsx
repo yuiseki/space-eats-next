@@ -297,14 +297,8 @@ const Home: NextPage = () => {
         >
           <p>
             衛星データや航空写真の解析に基づいた、空き家の可能性が高い建物を推定して地図上で表示しています。
-          </p>
-          <p>
             「確実に空き家である建物」以外はあくまでも推定によるものであるため、精度向上に協力していただきたいです。
-          </p>
-          <p>
             空き家であると確定した建物は、複数のオープンデータを組み合わせ、最適な活用法を提案します。
-          </p>
-          <p>
             <mark>注意：現時点ではプロトタイプであり適当な表示です</mark>
           </p>
         </div>
@@ -371,7 +365,7 @@ const Home: NextPage = () => {
                 width: "50px",
               }}
             >
-              {!viewState || (viewState?.zoom && viewState.zoom < 16) ? (
+              {!viewState || (viewState?.zoom && viewState.zoom < 13) ? (
                 <FontAwesomeIcon size="2x" icon={faSearchPlus} />
               ) : loadingOverpass ? (
                 <FontAwesomeIcon

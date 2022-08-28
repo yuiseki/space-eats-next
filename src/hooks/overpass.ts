@@ -20,7 +20,7 @@ export const useOverpass = () => {
       }
 
       console.log(zoom);
-      if (zoom < 16) {
+      if (zoom < 13) {
         return emptyGeoJSON;
       }
 
