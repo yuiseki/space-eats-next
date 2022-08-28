@@ -37,6 +37,7 @@ import { useOverpass } from "../hooks/overpass";
 import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
 import { LastEditUserIconView } from "../components/LastEditUserIconView";
+import { MESH_FILL_STYLE } from "../maps/MeshFillStyle";
 
 const UsageGuide = () => {
   return (
@@ -99,7 +100,16 @@ const Home: NextPage = () => {
 
   const geolocateControlRef = useRef<GeolocateControlRef>(null);
 
-  const [geojson, setGeojson] = useState<FeatureCollection<GeometryObject>>({
+  const [buldingsGeoJSON, setBuildingsGeoJSON] = useState<
+    FeatureCollection<GeometryObject>
+  >({
+    type: "FeatureCollection",
+    features: [],
+  });
+
+  const [meshGeoJSON, setMeshGeoJSON] = useState<
+    FeatureCollection<GeometryObject>
+  >({
     type: "FeatureCollection",
     features: [],
   });
@@ -120,9 +130,16 @@ const Home: NextPage = () => {
   // initial load
   //
   useEffect(() => {
+    (async () => {
+      const res = await fetch(
+        "https://raw.githubusercontent.com/valuecreation/mapbox-prj/b014b62e2c4db92726ca35ca8ec9a52b2acd5f28/data/1km_mesh_2018_13.geojson"
+      );
+      const json = await res.json();
+      setMeshGeoJSON(json);
+    })();
     setTimeout(() => {
       setViewState({
-        zoom: 16,
+        zoom: 14,
         latitude: 35.681464,
         longitude: 139.764074,
         bearing: 0,
@@ -187,7 +204,7 @@ const Home: NextPage = () => {
         center.longitude,
         center.zoom
       );
-      setGeojson(newGeojson);
+      setBuildingsGeoJSON(newGeojson);
     })();
   }, [debouncedViewState]);
 
@@ -254,7 +271,7 @@ const Home: NextPage = () => {
     if (viewState) {
       size = viewState.zoom < 18 ? 20 : viewState.zoom < 19 ? 25 : 35;
     }
-    return geojson.features.map((feature, i) => {
+    return buldingsGeoJSON.features.map((feature, i) => {
       if (!feature.properties) {
         return null;
       }
@@ -274,7 +291,7 @@ const Home: NextPage = () => {
         </Marker>
       );
     });
-  }, [geojson, viewState]);
+  }, [buldingsGeoJSON, viewState]);
 
   return (
     <div className={styles.container}>
@@ -334,7 +351,10 @@ const Home: NextPage = () => {
             style={{ width: "100%", height: "100%" }}
             mapStyle={OSM_RASTER_TILE_STYLE}
           >
-            <Source id="buildings-source" type="geojson" data={geojson}>
+            <Source id="mesh-source" type="geojson" data={meshGeoJSON}>
+              <Layer {...MESH_FILL_STYLE} />
+            </Source>
+            <Source id="buildings-source" type="geojson" data={buldingsGeoJSON}>
               <Layer {...BUILDINGS_FILL_STYLE} />
             </Source>
             <NavigationControl
@@ -349,7 +369,7 @@ const Home: NextPage = () => {
               showAccuracyCircle={false}
               trackUserLocation={false}
               positionOptions={{ enableHighAccuracy: true }}
-              fitBoundsOptions={{ zoom: 17 }}
+              fitBoundsOptions={{ zoom: 14 }}
             />
             <div
               className="fa-2xl"
