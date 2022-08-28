@@ -25,7 +25,13 @@ export const useOverpass = () => {
       }
 
       setLoadingOverpass(true);
-      let around = 300;
+      let around = 500;
+      if (zoom > 19) {
+        around = 400;
+      }
+      if (zoom > 18) {
+        around = 300;
+      }
       if (zoom > 17) {
         around = 200;
       }
