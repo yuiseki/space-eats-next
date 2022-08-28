@@ -20,6 +20,4 @@ RUN pip3 install ginza ja-ginza ja-ginza-electra
 
 RUN useradd -m user
 
-
-ENTRYPOINT [ "/usr/local/share/docker-init.sh" ]
 CMD [ "sleep", "infinity" ]
