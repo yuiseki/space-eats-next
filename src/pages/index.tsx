@@ -131,7 +131,7 @@ const Home: NextPage = () => {
   //
   useEffect(() => {
     (async () => {
-      const res = await fetch("data/nerima_mesh.geojson");
+      const res = await fetch("data/tokyo_population_mesh.geojson");
       const json = await res.json();
       console.log(json);
       setMeshGeoJSON(json);
