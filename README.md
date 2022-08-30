@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# space-eats-next
 
-## Getting Started
+## What
 
-First, run the development server:
+- The mission of this project is to slove problem about the disused / abandoned buildings
+  - For discovery such buildings, we use satellite remote sensing data and OpenStreetMap
+  - For save and share the status of buildings, we use OpenStreetMap
+  - For suggest utilize those buildings, we use Open Data from government
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Why
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Probrems
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- The presence of disused / abandoned buildings in an area can cause the following problems
+  - There is a risk of collapse in the event of a disaster.
+  - Sanitary conditions in the surrounding area will deteriorate.
+  - The security of the surrounding area will deteriorate.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Stakeholders
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Local residents are troubled
+  - Because their living environment is deteriorating
+- Municipalities are also having trouble
+  - Because they should keep track of buildings at risk
+- The Building owners is also in trouble
+  - Because they may have circumstances that make it impossible for them to give up their building
+- On the other hand, some people are looking for the disused / abandoned buildings
+  - Because they want to restore and utilize those buildings as inexpensively
 
-## Learn More
+## How
 
-To learn more about Next.js, take a look at the following resources:
+- The disused / abandoned buildings will be...
+  - Overgrown with plants
+  - The lights will never be turned on
+  - The air conditioning will be turned off
+  - The temperature will be low
+- Satellite remote sensing data has information such as vegetation index, day and night light index and infrared with location information
+  - NDVI: Normalized Difference Vegetation Index
+  - DNB: Day Night Band
+  - NIR: Near infrared
+  - SWIR: Short Wave InfraRed
+- OpenStreetMap has shape of buildings with location information
+- We believe we can estimate to some extent whether a building is disused / abandoned based on its geometry and remote sensing data
+- Once we have some estimates, we will use them as a basis for everyone to do a field survey and update OpenStreetMap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
