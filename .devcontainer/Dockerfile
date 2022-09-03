@@ -14,7 +14,6 @@ RUN apt update && apt install -y \
     python3-gdal \
     python3-rtree
 
-
 RUN curl -Ls https://deb.nodesource.com/setup_18.x | bash
 RUN apt update && apt install -y nodejs
 
@@ -28,5 +27,7 @@ COPY . /app
 RUN pip install -r requirements.txt
 
 RUN useradd -m user
+
+RUN npm ci
 
 CMD [ "sleep", "infinity" ]

@@ -6,7 +6,6 @@
   "remoteUser": "user",
   "runArgs": ["--init"],
   "overrideCommand": false,
-  "postCreateCommand": "npm ci",
   "customizations": {
     "vscode": {
       "settings": {
