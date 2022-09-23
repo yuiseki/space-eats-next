@@ -3,7 +3,9 @@ export const NERIMA_BUILDINGS_STYLE: mapboxgl.Style = {
   sources: {
     "nerima-buildings": {
       type: "vector",
-      tiles: ["http://localhost:3000/nerima_buildings/{z}/{x}/{y}.pbf"],
+      tiles: [
+        "https://space-eats.yuiseki.net/nerima_buildings/{z}/{x}/{y}.pbf",
+      ],
       attribution: "© OpenStreetMap contributors",
     },
   },

@@ -362,7 +362,9 @@ const Home: NextPage = () => {
               id="buildings-source"
               name="buildings-source"
               type="vector"
-              tiles={["http://localhost:3000/nerima_buildings/{z}/{x}/{y}.pbf"]}
+              tiles={[
+                "https://space-eats.yuiseki.net/nerima_buildings/{z}/{x}/{y}.pbf",
+              ]}
               attribution={"© OpenStreetMap contributors"}
             >
               <Layer
