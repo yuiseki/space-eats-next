@@ -38,6 +38,8 @@ import { OSM_RASTER_TILE_STYLE } from "../maps/OsmRasterTileStyle";
 import { BUILDINGS_FILL_STYLE } from "../maps/BuildingsFillStyle";
 import { LastEditUserIconView } from "../components/LastEditUserIconView";
 import { MESH_FILL_STYLE } from "../maps/MeshFillStyleUTokyo";
+import { BUILDINGS_AKIYA_STYLE } from "../maps/BuildingsAkiyaStyle";
+import { NERIMA_BUILDINGS_STYLE } from "../maps/NerimaBuildingsStyle";
 
 const UsageGuide = () => {
   return (
@@ -76,7 +78,7 @@ const UsageGuide = () => {
           padding: "4px",
         }}
       >
-        空き家の可能性が高い建物
+        空き家の可能性がやや高い建物
       </div>
       <div
         style={{
@@ -86,7 +88,7 @@ const UsageGuide = () => {
           padding: "4px",
         }}
       >
-        確実に空き家である建物
+        空き家の可能性が非常に高い建物
       </div>
     </div>
   );
@@ -100,19 +102,14 @@ const Home: NextPage = () => {
 
   const geolocateControlRef = useRef<GeolocateControlRef>(null);
 
-  const [buldingsGeoJSON, setBuildingsGeoJSON] = useState<
+  /*
+  const [akiyaGeoJSON, setAkiyaGeoJSON] = useState<
     FeatureCollection<GeometryObject>
   >({
     type: "FeatureCollection",
     features: [],
   });
-
-  const [meshGeoJSON, setMeshGeoJSON] = useState<
-    FeatureCollection<GeometryObject>
-  >({
-    type: "FeatureCollection",
-    features: [],
-  });
+  */
 
   const [cursor, setCursor] = useState<string>("auto");
 
@@ -130,17 +127,21 @@ const Home: NextPage = () => {
   // initial load
   //
   useEffect(() => {
+    /*
     (async () => {
-      const res = await fetch("data/tokyo_population_mesh.geojson");
+      const res = await fetch(
+        "data/nerima_AkiyaEstimated_GakudoEstimated_ver2.geojson"
+      );
       const json = await res.json();
       console.log(json);
-      setMeshGeoJSON(json);
+      setAkiyaGeoJSON(json);
     })();
+    */
     setTimeout(() => {
       setViewState({
         zoom: 14,
-        latitude: 35.681464,
-        longitude: 139.764074,
+        latitude: 35.74609,
+        longitude: 139.64404,
         bearing: 0,
         pitch: 0,
         padding: {
@@ -192,6 +193,7 @@ const Home: NextPage = () => {
   //
   // fetch building
   //
+  /*
   useEffect(() => {
     (async () => {
       if (!debouncedViewState) {
@@ -206,6 +208,7 @@ const Home: NextPage = () => {
       setBuildingsGeoJSON(newGeojson);
     })();
   }, [debouncedViewState, fetchOverpassBuildings]);
+  */
 
   //
   // mouse events
@@ -268,6 +271,7 @@ const Home: NextPage = () => {
   //
   // icons
   //
+  /*
   const pins = useMemo(() => {
     let size = 25;
     if (viewState) {
@@ -294,6 +298,7 @@ const Home: NextPage = () => {
       );
     });
   }, [buldingsGeoJSON, viewState]);
+  */
 
   return (
     <div className={styles.container}>
@@ -337,7 +342,7 @@ const Home: NextPage = () => {
             onMove={onMapMove}
             onMoveEnd={onMapMoveEnd}
             onLoad={onMapLoad}
-            interactiveLayerIds={["buildings-layer-fill"]}
+            //interactiveLayerIds={["buildings-layer-fill"]}
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -353,12 +358,28 @@ const Home: NextPage = () => {
             style={{ width: "100%", height: "100%" }}
             mapStyle={OSM_RASTER_TILE_STYLE}
           >
-            <Source id="mesh-source" type="geojson" data={meshGeoJSON}>
-              <Layer {...MESH_FILL_STYLE} />
+            <Source
+              id="buildings-source"
+              name="buildings-source"
+              type="vector"
+              tiles={["http://localhost:3000/nerima_buildings/{z}/{x}/{y}.pbf"]}
+              attribution={"© OpenStreetMap contributors"}
+            >
+              <Layer
+                source-layer="nerima_buildings"
+                {...BUILDINGS_FILL_STYLE}
+              />
             </Source>
+            {/* 
+            <Source id="akiya-source" type="geojson" data={akiyaGeoJSON}>
+              <Layer {...BUILDINGS_AKIYA_STYLE} />
+            </Source>
+            */}
+            {/*
             <Source id="buildings-source" type="geojson" data={buldingsGeoJSON}>
               <Layer {...BUILDINGS_FILL_STYLE} />
             </Source>
+             */}
             <NavigationControl
               position="top-left"
               style={{ marginTop: "55px" }}
@@ -400,7 +421,7 @@ const Home: NextPage = () => {
                 <FontAwesomeIcon size="2x" icon={faXmark} />
               )}
             </div>
-            {pins}
+            {/** pins */}
           </Map>
         </div>
       </main>
